@@ -1,0 +1,1 @@
+export const confirmAccount = (req, res) => res.send("Confirm Account");
