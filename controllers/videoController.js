@@ -1,7 +1,14 @@
 
 // globalRouter
 export const home = (req, res) => res.render("home", {pageTitle: "Home"});
-export const search = (req, res) => res.render("search", {pageTitle: "Search"});
+export const search = (req, res) => {
+    const {
+        query: { term: searchingBy }
+    } = req;
+    // const searchingBy = req.query.term;
+    // res.render("search", {pageTitle: "Search", searchingBy: searchingBy});
+    res.render("search", {pageTitle: "Search", searchingBy});
+}
 
 // videoRouter
 export const videos = (req, res) => res.render("videos");
