@@ -46,7 +46,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(morgan("dev"));
 
+app.use(localsMiddleware);
 
+app.use(function(req,res,next) {
+    res.setHeader("Content-Security-Policy", "script-src 'self' https://archive.org");
+    return next();
+})
 // middleware 생성 option 1
 // app.use((req, res, next) => {
     
@@ -57,7 +62,6 @@ app.use(morgan("dev"));
         
 // })
 
-app.use(localsMiddleware);
 
 // const middleware = (req, res, next) => {
 //     res.send("not happening");
@@ -69,7 +73,7 @@ app.use(localsMiddleware);
 // app.get("/profile", handleProfile);
 
 app.use(routes.home, globalRouter);
-app.get(routes.users, userRouter);
+app.use(routes.users, userRouter);
 app.get(routes.videos, videoRouter);
 
 // app.listen(PORT, handleListening);
