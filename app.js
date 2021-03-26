@@ -74,7 +74,7 @@ app.use(function(req,res,next) {
 
 app.use(routes.home, globalRouter);
 app.use(routes.users, userRouter);
-app.get(routes.videos, videoRouter);
+app.use(routes.videos, videoRouter);
 
 // app.listen(PORT, handleListening);
 
